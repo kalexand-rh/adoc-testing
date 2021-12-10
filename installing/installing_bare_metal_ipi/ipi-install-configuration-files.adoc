@@ -31,6 +31,6 @@ include::modules/ipi-install-configuring-ntp-for-disconnected-clusters.adoc[leve
 
 include::modules/ipi-install-configure-network-components-to-run-on-the-control-plane.adoc[leveloffset=+1]
 
-ifeval::[{distro} == openshift-enterprise]
+ifeval::[{product-version} <= 4.5]
 include::modules/ipi-install-configuring-bios-for-worker-node.adoc[leveloffset=+1]
 endif::[]
