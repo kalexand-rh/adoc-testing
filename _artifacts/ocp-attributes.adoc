@@ -2,12 +2,3 @@
 :product-title: OpenShift Container Platform
 :product-version: 4.9
 :openshift-enterprise: true
-
-:op-system-first: Red Hat Enterprise Linux CoreOS (RHCOS)
-:op-system: RHCOS
-:op-system-base: RHEL
-:op-system-base-full: Red Hat Enterprise Linux (RHEL)
-
-:rh-virtualization-first: Red Hat Virtualization (RHV)
-:rh-virtualization: RHV
-:rh-virtualization-engine-name: Manager

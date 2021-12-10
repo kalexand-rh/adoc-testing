@@ -2,12 +2,3 @@
 :product-title: OKD
 :product-version: 4
 :openshift-origin: true
-
-:op-system-first: Fedora CoreOS (FCOS)
-:op-system: FCOS
-:op-system-base: Fedora
-:op-system-base-full: Fedora
-
-:rh-virtualization-first: oVirt
-:rh-virtualization: oVirt
-:rh-virtualization-engine-name: Engine
