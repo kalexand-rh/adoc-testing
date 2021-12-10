@@ -21,6 +21,11 @@ variants:
        - getting_started
        - cloud_infrastructure_access
        - administering_a_cluster
+       - _images
+       - _javascript
+       - _preview
+       - _snippets
+       - _templates
  - name: openshift-container-platform
    attributes:
     - _artifacts/ocp-attributes.adoc
@@ -43,6 +48,11 @@ variants:
        - getting_started
        - cloud_infrastructure_access
        - administering_a_cluster
+       - _images
+       - _javascript
+       - _preview
+       - _snippets
+       - _templates
  - name: openshift-dedicated
    attributes:
     - _artifacts/osd-attributes.adoc
@@ -64,3 +74,8 @@ variants:
        - scripts
        - installing
        - whats_new
+       - _images
+       - _javascript
+       - _preview
+       - _snippets
+       - _templates       
