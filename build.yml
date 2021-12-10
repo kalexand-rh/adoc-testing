@@ -14,6 +14,10 @@ variants:
        - images/*.png
        - images/*.svg
      excluded:
+       - _unused_topics
+       - _package
+       - _stylesheets
+       - scripts
        - getting_started
        - cloud_infrastructure_access
        - administering_a_cluster
@@ -31,6 +35,10 @@ variants:
        - images/*.png
        - images/*.svg
      excluded:
+       - _unused_topics
+       - _package
+       - _stylesheets
+       - scripts
        - whats_new
        - getting_started
        - cloud_infrastructure_access
@@ -50,5 +58,9 @@ variants:
        - images/*.png
        - images/*.svg
      excluded:
+       - _unused_topics
+       - _package
+       - _stylesheets
+       - scripts
        - installing
        - whats_new
