@@ -6,6 +6,10 @@
 [id="creating-the-openshift-manifests_{context}"]
 = Creating the {product-title} manifests
 
+This is a fake abstract.
+
+.Procedure
+
 . Create the {product-title} manifests.
 +
 [source,terminal]
