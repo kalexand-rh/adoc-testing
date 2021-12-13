@@ -11,6 +11,7 @@ variants:
        - modules/**/*.adoc
        - whats_new/**/*.adoc
        - installing/**/*.adoc
+       - rest_api/**/*.adoc
        - images/*.png
        - images/*.svg
      excluded:
@@ -37,6 +38,7 @@ variants:
        - modules/**/*.adoc
        - release_notes/**/*.adoc
        - installing/**/*.adoc
+       - rest_api/**/*.adoc
        - images/*.png
        - images/*.svg
      excluded:
@@ -65,6 +67,7 @@ variants:
        - getting_started/**/*.adoc
        - cloud_infrastructure_access/**/*.adoc
        - administering_a_cluster/**/*.adoc
+       - rest_api/**/*.adoc       
        - images/*.png
        - images/*.svg
      excluded:
@@ -78,4 +81,4 @@ variants:
        - _javascript
        - _preview
        - _snippets
-       - _templates       
+       - _templates
