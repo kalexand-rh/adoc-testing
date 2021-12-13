@@ -1,3 +1,0 @@
-:distro: openshift-dedicated
-:product-title: OpenShift Dedicated
-:product-version: 4

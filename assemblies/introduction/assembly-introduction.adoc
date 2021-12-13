@@ -1,0 +1,17 @@
+[id='introduction']
+= Introduction to {product-long}
+:context: intro
+:imagesdir: ../../_images
+
+[role="_abstract"]
+Discover the features and functions available in the {product-long} cloud service.
+
+include::../../modules/con_conscious-language-message.adoc[leveloffset=+1]
+
+include::../../modules/introduction/con-introduction-kafka.adoc[leveloffset=+1]
+
+include::../../modules/introduction/con-introduction-openshift-streams.adoc[leveloffset=+1]
+
+include::../../modules/introduction/con-introduction-scenarios.adoc[leveloffset=+1]
+
+include::../../modules/introduction/con-introduction-preview.adoc[leveloffset=+1]

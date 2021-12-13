@@ -1,3 +1,0 @@
-:distro: openshift-origin
-:product-title: OKD
-:product-version: 4

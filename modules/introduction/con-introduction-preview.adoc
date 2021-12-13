@@ -1,0 +1,11 @@
+[id="introduction-preview"]
+= Try {product}
+
+[role="_abstract"]
+To try {product}, you can create a no-cost trial instance.
+To learn more, go to link:{service-url}[console.redhat.com^].
+
+[role="_additional-resources"]
+.Additional resources
+* link:https://access.redhat.com/articles/5979061[{product-long} Service Limits^]
+// * link:https://access.redhat.com/articles/6477651[{product-long} Supported and Compatible Configurations^]

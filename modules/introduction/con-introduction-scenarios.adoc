@@ -1,0 +1,170 @@
+[id="introduction-scenarios"]
+= How to use {product}
+:imagesdir: ../../_images
+
+[role="_abstract"]
+Use {product} to create, manage and check the status of Kafka instances, topics, and consumer groups.
+You can perform these activities from the console, the `rhoas` CLI, or REST API.
+
+Create a Kafka instance and a service account that provides the details for connecting to that Kafka instance.
+With the Kafka instance running, create and manage topics.
+Use the service account connection details to handle user requests from Kafka client applications to produce or consume messages from those topics.
+
+== Create Kafka instances
+
+When you first use the {product} service, you’ll begin by creating a Kafka instance.
+After the instance is created, you're ready to create topics.
+
+To send or consume messages to topics, you can look up the bootstrap server
+and generate a service account that can be used by an application to connect to the Kafka instance.
+
+== Create service accounts
+
+A service account is like a user account, but for client applications.
+You create a service account to allow client applications to connect to your Kafka instance.
+When you first create a service account, the credentials required for connection — a client ID and client secret — are generated for the account.
+
+You can reset the credentials or delete the service account at any time.
+However, you can only access the client ID and secret when you first create a service account.
+Make sure to record these details during the creation process for later use when connecting producer or consumer applications to the Kafka instance.
+
+[discrete]
+=== Manage account access
+
+ACLs enable you to manage access to the Kafka resources that you create.
+You can set ACL permissions for user accounts and service accounts.
+You can use the web console or the `rhoas` CLI to set ACL-based access permissions for service accounts and other user accounts.
+You set the permissions to enable accounts to access resources, such as consumer groups, topics, or messages that use the same transactional ID.
+Kafka uses transactional IDs to provide delivery guarantees for related messages.
+
+You authorize access and specify the operations allowed on the resources.
+For example, you might specify an ACL permission that allows messages to be read from all topics in the Kafka instance.
+The permissions apply to all client applications associated with the account.
+
+== Create and configure topics
+
+When you create a topic, you set core configuration, such as:
+
+* The number of topic partitions
+* Size-based and time-based message retention policies
+
+You can also define configuration for:
+
+* Message size and compression type
+* Log indexing, and cleanup and flushing of old data
+
+From the web console, you can view all the topics created for a Kafka instance. You can then select and delete any topics.
+
+NOTE: For topic replication, partition leader elections can be clean or unclean.
+{product} allows only clean leader election, which means that out-of-sync replicas cannot become leaders.
+If no in-sync replicas are available, Kafka waits until the original leader is back online before messages are picked up again.
+
+== Set up client access to Kafka instances
+
+You can set up clients and utilities to produce and consume messages from your Kafka instances.
+The client must be configured with the connection details required to make a secure connection.
+
+{product} provides both SASL/OAUTHBEARER and SASL/PLAIN for client authentication.
+
+Both mechanisms allow clients to establish authenticated sessions with the Kafka instance. SASL/OAUTHBEARER authentication is the recommended authentication method.
+
+SASL/OAUTHBEARER authentication uses token-based credentials exchange, which means the client never shares its credentials with the Kafka instance.
+Support for SASL/OAUTHBEARER authentication is built in to many standard Kafka clients.
+
+If a client doesn’t support SASL/OAUTHBEARER authentication, you can use SASL/PLAIN authentication.
+For SASL/PLAIN authentication, the connection details include the client ID and client secret created for the service account and the bootstrap server URL.
+
+== Monitor and configure consumer groups
+
+When you configure an application client to access Kafka, you can assign a group ID to associate the consumer with a consumer group.
+All consumers with the same group ID belong to the consumer group with that ID.
+
+Use {product} components to check the status of consumer groups that access a particular Kafka instance.
+
+[discrete]
+=== Check consumer groups in the web console
+
+View information on the consumer groups in the web console.
+For each consumer group, you can check:
+
+* The total number of active members
+* The total number of partitions with _consumer lag_
+
+Consumer lag indicates a delay between the last message added to a partition and the message currently being picked up by the consumer subscribed to that partition.
+
+If you select a specific consumer group in the console, you can view details of the consumers receiving messages from each partition in the topic.
+For each consumer group, you can check the total number of unconsumed partitions.
+If a partition is not being consumed, it can indicate that a consumer subscribed to the topic is down or the partition is empty.
+
+[discrete]
+=== Track offset positions for consumers
+
+You can also track a consumer's position in a partition through offset information:
+
+* _Current offset_ is current offset number for the consumer in the partition log.
+* _Log end offset_ is the current offset number for the producer in the partition log.
+* _Offset lag_ is the difference between the consumer and producer offset positions in the log.
+
+Consumer lag reflects the position of the consumer offset in relation to the end of the partition log.
+This difference is sometimes referred to as the delta between the producer offset and consumer offset, which are the read and write positions in the Kafka broker topic partitions.
+And it’s a particularly important metric.
+For applications that rely on the processing of (near) real-time data, it's critical to monitor consumer lag to check that it doesn't become too big.
+The greater the lag becomes, the further the process moves from the real-time processing objective. Lag is often reduced by adding new consumers to a group.
+
+.Consumer lag between the producer and consumer offset
+image::introduction/160_OpenShift_Streams_Apache_Kafka_0421_lag.svg[Image of consumer lag shown from partition offset positions]
+
+You can use {product} components to manage consumer groups.
+After you stop the consumers in a group, you can delete the group, or reset consumer offsets.
+A reset changes the position from which consumers read the message log of a topic partition.
+For example, you can reset offsets so that new consumers fetch messages from the start of a message log rather than fetching the latest message.
+
+== View metrics on resource utilization
+
+When you select a Kafka instance in the web console, use the *Dashboard* page to view metrics for Kafka instances and topics.
+The metrics provide information for monitoring of resource utilization.
+
+You can check the disk space used by Kafka brokers to store message data over a specified period.
+You can also check data traffic by viewing the total amount of data sent to and consumed from topics.
+The metrics provide insights that can help you tune the performance of your Kafka instances.
+
+You can also use the _Kafka Service Fleet Manager_ REST API to pull metrics from the Kafka instance.
+
+== Bind {osd-name-short}-based applications to the service
+
+{osd-name} is an enterprise Kubernetes platform managed and supported by {org-name}. {osd-name-short} removes the operational complexity of running and maintaining OpenShift on a cloud provider.
+
+If you're running an {osd-name-short}-based client application, you can use the Red Hat Service Binding Operator to bind the application from a given namespace to the {product} service.
+
+Use the `rhoas` CLI `rhoas cluster connect` command to:
+
+* Create a service account and mount it as a secret into your cluster
+* Create a Kafka `Request` object to create a `ServiceBinding` object using the Service Binding operator
+
+////
+== Use registered schemas
+
+Red Hat OpenShift Service Registry stores schemas.
+Schemas impose a structure on messages to ensure a consistent data format.
+Messages that are sent or received must be compatible with the schemas.
+Use {product} with Red Hat OpenShift Service Registry to decouple the structure of your message data from your client applications.
+The schemas can then be referenced from your client applications to ensure that the messages that they send and receive are compatible with those schemas.
+
+When you select a Service Registry instance in the web console, you can check existing schemas.
+If a schema doesn't exist that matches your topic, you can create it.
+The web console shows you the schema name that you should use to match the topic.
+////
+
+[role="_additional-resources"]
+.Additional resources
+* link:{service-url}[console.redhat.com^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/f351c4bd-9840-42ef-bcf2-b0c9be4ee30a[Getting Started with {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/7d28aec8-e146-44db-a4a5-fafc1f426ca5[Configuring topics in {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/38e68ba5-7893-4bf5-a6c4-3e1b3f1b42bf[Configuring consumer groups in {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/88e1487a-2a14-4b35-85b9-a7a2d67a37f3[Getting started with the `rhoas` CLI for OpenShift Streams for Apache Kafka^]
+* link:https://api.openshift.com/?urls.primaryName=managed-services-api%20service[API documentation^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/c0ab8d79-8b74-4876-955d-6d5b6912a966[Configuring and connecting Kafka scripts with {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/ee92cfdb-9587-42f8-80d5-54169e0e3c07[Configuring and connecting Kafkacat with {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/04827d87-ed92-4ffd-a126-11fa13348eba[Using Quarkus applications with Kafka instances in {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_service_registry/1[Product Documentation for Red Hat OpenShift Service Registry^]
+* link:{osd-docs}[{osd-name}^]

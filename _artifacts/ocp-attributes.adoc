@@ -1,3 +1,0 @@
-:distro: openshift-enterprise
-:product-title: OpenShift Container Platform
-:product-version: 4.9

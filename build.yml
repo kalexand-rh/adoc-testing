@@ -1,60 +1,14 @@
-repository: ocp-tests
+repository: rhosak-documentation
 variants:
- - name: okd
+ - name: rhosak-documentation
    attributes:
-    - _artifacts/okd-attributes.adoc
+    - _artifacts/attributes.adoc
    build: true
    files:
      included:
-       - architecture/**/*.adoc
-       - welcome/**/*.adoc
+       - assemblies/*.adoc
+       - assemblies/**/*.adoc
+       - modules/*.adoc
        - modules/**/*.adoc
-       - whats_new/**/*.adoc
-       - installing/**/*.adoc
-     excluded:
-       - _unused_topics
-       - _package
-       - _stylesheets
-       - scripts
-       - getting_started
-       - cloud_infrastructure_access
-       - administering_a_cluster
- - name: openshift-container-platform
-   attributes:
-    - _attributes/ocp-attributes.adoc
-   build: true
-   files:
-     included:
-       - architecture/**/*.adoc
-       - welcome/**/*.adoc
-       - modules/**/*.adoc
-       - release_notes/**/*.adoc
-       - installing/**/*.adoc
-     excluded:
-       - _unused_topics
-       - _package
-       - _stylesheets
-       - scripts
-       - whats_new
-       - getting_started
-       - cloud_infrastructure_access
-       - administering_a_cluster
- - name: openshift-dedicated
-   attributes:
-    - _artifacts/osd-attributes.adoc
-   build: true
-   files:
-     included:
-       - architecture/**/*.adoc
-       - welcome/**/*.adoc
-       - modules/**/*.adoc
-       - getting_started/**/*.adoc
-       - cloud_infrastructure_access/**/*.adoc
-       - administering_a_cluster/**/*.adoc
-     excluded:
-       - _unused_topics
-       - _package
-       - _stylesheets
-       - scripts
-       - installing
-       - whats_new
+       - _images/**/*.png
+       - _images/**/*.svg 

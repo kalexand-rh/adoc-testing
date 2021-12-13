@@ -1,0 +1,111 @@
+[id="introduction-openshift-streams"]
+= How {product} supports Kafka
+:imagesdir: ../../_images
+
+[role="_abstract"]
+{product} puts you in control of setting up Kafka.
+As well as managing the {product} service through the web console, you can also download and use a dedicated command-line interface (CLI),
+or use the publicly available REST APIs for provisioning and administration tasks.
+
+Use the {product}  components to quickly and easily create new Kafka instances and manage those instances.
+
+The components simplify the process of:
+
+* Running Kafka instances
+* Managing brokers
+* Creating and managing topics
+* Configuring access to Kafka
+* Securing access to Kafka
+
+After the Kafka instance is configured, you can generate connection details.
+You use the connection details to connect the Kafka client applications and Kafka utilities that will produce and consume messages from the Kafka instance.
+
+.{product} components for managing Kafka
+image::introduction/160_OpenShift_Streams_Apache_Kafka_0421_streams.svg[Image of {product} components interacting with Kafka]
+
+== Web console
+
+Use the web console to:
+
+* Create and manage Kafka instances and topics
+* Create and manage a service account to connect to Kafka
+* View the status and configuration of your Kafka deployment before you make updates
+
+You can view the status of a Kafka instance before navigating to the page where you manage your topics or view information on the consumer groups connected to the Kafka instance.
+
+You add the credentials generated for a service account to client applications so that they can connect to the Kafka instance.
+
+Quick starts in the console guide you through common tasks.
+
+.{product} web console
+image::introduction/intro-console.png[Image of {product} console showing quick starts]
+
+== CLI tool
+
+Download and use the `rhoas` command-line interface (CLI) tool to manage your {product} service from the command line.
+
+Use the `rhoas` CLI tool to perform the same operations that are available in the console.
+To manage your Kafka resources, you can use `create`, `update`, and `delete` commands.
+To view information on resources, you can use `status`, `list`, and `describe` commands.
+
+The syntax for the CLI tool is easy to understand, which makes it intuitive to use.
+For example, you might use the `topic` commands to create a Kafka topic, and update the topic after viewing information on its configuration.
+
+.Command to create a Kafka topic
+....
+rhoas kafka topic create topic-1
+....
+
+.Command to view the details of a specific Kafka topic
+....
+rhoas kafka topic describe topic-1
+....
+
+This update command changes the number of partitions, the message retention period, and the number of replicas for the topic:
+
+.Command to update the configuration of a Kafka topic
+....
+rhoas kafka topic update topic-3 --retention-ms 36000 --partitions 3
+....
+
+== REST API
+
+{product} provides a RESTful interface to allow HTTP-based interactions with the service.
+The _Kafka Service Fleet Manager_ REST API is available from link:https://api.openshift.com/?urls.primaryName=managed-services-api%20service[api.openshift.com^].
+
+Endpoints provide access to Kafka and service account resources.
+Methods are available to perform actions on those resources.
+For example, you can use the API to retrieve a list of Kafka instances, or create a new service account.
+
+.Curl request to return a list of Kafka instances
+....
+curl -X GET "https://api.openshift.com/api/managed-services-api/v1/kafkas" -H "accept: application/json"
+....
+
+.Curl request to create a new service account
+....
+curl -X POST "https://api.openshift.com/api/managed-services-api/v1/serviceaccounts" -H "accept: application/json" -H "Content-Type: application/json" -d "{\"$ref\":\"#/components/examples/ServiceAccountRequestExample\"}"
+....
+
+== Guided help with quick starts
+
+The web console has tours and quick starts that help to guide you through Kafka-related tasks.
+
+* Take a tour to learn how to use the service, and how to navigate the console to find information.
+* Step through a quick start to perform a specific task.
+
+Each quick start has a clearly defined set of goals, and each goal contains the steps you need to accomplish that goal.
+For example, you might want to begin with the _Getting Started with {product-long}_ quick start to learn how to create and inspect a Kafka instance, and then create a topic for that instance.
+
+When you have a Kafka instance running, and topics to store your messages,
+the _Configuring and connecting Kafka scripts with {product-long}_ quick start shows you how to use example Kafka producer and consumer clients to start producing and consuming messages in minutes.
+
+[role="_additional-resources"]
+.Additional resources
+* link:{service-url}[console.redhat.com^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/f351c4bd-9840-42ef-bcf2-b0c9be4ee30a[Getting Started with {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/88e1487a-2a14-4b35-85b9-a7a2d67a37f3[Getting started with the `rhoas` CLI for OpenShift Streams for Apache Kafka^]
+* link:https://api.openshift.com/?urls.primaryName=managed-services-api%20service[API documentation^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/c0ab8d79-8b74-4876-955d-6d5b6912a966[Configuring and connecting Kafka scripts with {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/ee92cfdb-9587-42f8-80d5-54169e0e3c07[Configuring and connecting Kafkacat with {product-long}^]
+* link:https://access.redhat.com/documentation/en-us/red_hat_openshift_streams_for_apache_kafka/1/guide/04827d87-ed92-4ffd-a126-11fa13348eba[Using Quarkus applications with Kafka instances in {product-long}^]

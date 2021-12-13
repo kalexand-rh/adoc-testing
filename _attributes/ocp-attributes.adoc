@@ -1,3 +1,0 @@
-:distro: openshift-enterprise
-:product-name: OpenShift Container Platform
-:product-version: adoc-test

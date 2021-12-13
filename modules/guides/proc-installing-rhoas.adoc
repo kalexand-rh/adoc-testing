@@ -1,0 +1,146 @@
+[id='proc-installing-rhoas_{context}']
+= Installing the rhoas CLI
+:imagesdir: ../_images
+
+[role="_abstract"]
+You can install `rhoas` on Linux, macOS, or Windows.
+
+NOTE: The `rhoas` link:https://github.com/redhat-developer/app-services-cli/releases[Releases page^] lists the bug fixes and new features for every `rhoas` release.
+
+[discrete,id="installing-rhoas-cli-linux_{context}"]
+== Installing the rhoas CLI on Linux
+
+.Procedure
+
+. Navigate to the https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/overview[Red Hat OpenShift Streams for Apache Kafka] page on the Red Hat Developer Portal.
+
+. Click https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/download[*Install/specifics*] and scroll to the bottom of the page to the *All Downloads* section.
+
+. In the *RHOAS CLI* downloads table, in the Linux row, click the *Download* button to download the `rhoas` .zip file.
+
+. Extract the `rhoas` binary:
++
+--
+[source,shell]
+----
+unzip rhoas-${version}-linux.zip
+----
+
+An open source license and README file are also included in the .zip file.
+--
+
+. For `rhoas` to be executable from any directory you must place it onto your system PATH. To view which directories are on your PATH, run the following:
++
+--
+[source,shell]
+----
+echo $PATH
+----
+--
+
+. Move the `rhoas` executable to your preferred PATH location:
++
+[source,shell]
+----
+mv rhoas $HOME/.local/bin
+----
+
+. Check the `rhoas` version to verify that the CLI is installed.
++
+--
+This example shows that `rhoas` is installed:
+
+[source,shell]
+----
+$ rhoas --version
+----
+--
+
+[discrete,id="installing-rhoas-cli-macos_{context}"]
+== Installing the rhoas CLI on macOS
+
+.Procedure
+
+. Navigate to the https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/overview[Red Hat OpenShift Streams for Apache Kafka] page on the Red Hat Developer Portal.
+
+. Click https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/download[*Install/specifics*] and scroll to the bottom of the page to the *All Downloads* section.
+
+. In the *RHOAS CLI* downloads table, in the macOS row, click the *Download* button to download the `rhoas` .zip file.
+
+. Extract the `rhoas` binary:
++
+--
+[source,shell]
+----
+unzip rhoas-${version}-darwin.zip
+----
+
+An open source license and README file are also included in the .zip file.
+--
+
+. For `rhoas` to be executable from any directory you must place it onto your system PATH. To view which directories are on your PATH, run the following:
++
+--
+[source,shell]
+----
+echo $PATH
+----
+--
+
+. Move the `rhoas` executable to your preferred PATH location:
++
+[source,shell]
+----
+mv rhoas $HOME/bin
+----
+
+. Check the `rhoas` version to verify that the CLI is installed.
++
+--
+This example shows that `rhoas` is installed:
+
+[source,shell]
+----
+$ rhoas --version
+----
+--
+
+[discrete,id="installing-rhoas-cli-windows_{context}"]
+== Installing the rhoas CLI on Windows
+
+.Procedure
+
+. Navigate to the https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/overview[Red Hat OpenShift Streams for Apache Kafka] page on the Red Hat Developer Portal.
+
+. Click https://developers.redhat.com/products/red-hat-openshift-streams-for-apache-kafka/download[*Install/specifics*] and scroll to the bottom of the page to the *All Downloads* section.
+
+. In the *RHOAS CLI* downloads table, in the Windows row, click the *Download* button to download the `rhoas` .zip file.
+
+. On your computer, create a `C:\rhoas` folder.
+
+. Extract the `rhoas.exe` file from the .zip file that you downloaded.
+
+. Move the `rhoas.exe` file to `C:\rhoas`.
+
+. If you are using Windows 10, set the `PATH` variable.
+
+.. Click *Search* and type `env` or `environment`.
+
+.. Select *Edit environment variables for your account*.
+
+.. In the *Variable* section, select *Path*, and click *Edit*.
+
+.. Click *New*, and enter `C:\rhoas`.
+
+.. Click *OK* to save changes.
+
+. Check the `rhoas` version to verify that the CLI is installed.
++
+--
+This example shows that `rhoas` is installed:
+
+[source,shell]
+----
+rhoas --version
+----
+--
