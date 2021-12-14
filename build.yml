@@ -6,8 +6,8 @@ variants:
    build: false
    files:
      included:
-       - architecture/**/*.adoc
-       - welcome/**/*.adoc
+       - architecture/*.adoc
+       - welcome/*.adoc
        - modules/**/*.adoc
        - whats_new/**/*.adoc
        - installing/**/*.adoc
@@ -33,12 +33,12 @@ variants:
    build: true
    files:
      included:
-       - architecture/**/*.adoc
-       - welcome/**/*.adoc
+       - architecture/*.adoc
+       - welcome/*.adoc
        - modules/**/*.adoc
-       - release_notes/**/*.adoc
-       - installing/**/*.adoc
-       - rest_api/**/*.adoc
+       - release_notes/*.adoc
+       - installing/*.adoc
+       - rest_api/*.adoc
        - images/*.png
        - images/*.svg
      excluded:
@@ -67,7 +67,7 @@ variants:
        - getting_started/**/*.adoc
        - cloud_infrastructure_access/**/*.adoc
        - administering_a_cluster/**/*.adoc
-       - rest_api/**/*.adoc       
+       - rest_api/**/*.adoc
        - images/*.png
        - images/*.svg
      excluded:
